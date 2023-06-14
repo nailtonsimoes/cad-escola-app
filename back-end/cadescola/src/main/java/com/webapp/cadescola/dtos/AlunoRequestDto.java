@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class AlunoDto {
+public class AlunoRequestDto {
 
     private String matricula;
 

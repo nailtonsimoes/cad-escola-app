@@ -1,23 +1,31 @@
 import { Component } from '@angular/core';
 import { Aluno } from 'src/app/models/aluno';
+import { Turma } from 'src/app/models/turma';
+import { AlunoService } from 'src/app/services/aluno.service';
+import { TurmaService } from 'src/app/services/turma.service';
 
 @Component({
   selector: 'app-listar-todos-alunos',
   templateUrl: './listar-todos-alunos.component.html',
-  styleUrls: ['./listar-todos-alunos.component.css']
+  styleUrls: ['./listar-todos-alunos.component.css'],
 })
 export class ListarTodosAlunosComponent {
-  listaDeAlunos: Aluno[] = []; // Inicialize a fonte de dados com um array vazio ou com os dados desejados
+  listaDeAlunos: Aluno[] = []; 
+  turmas: Turma[] = [];
 
-  constructor() { }
+  constructor(private turmaService: TurmaService, private alunoService: AlunoService) {}
 
   ngOnInit(): void {
-    // Preencha a fonte de dados com os dados desejados
-    this.listaDeAlunos = [
-      { id: 1, nome: 'Chicus Chapelotis', matricula:'202306547', turma: '1' },
-      { id: 2, nome: 'Maria Garibalda', matricula:'202105542', turma: '2' },
-      { id: 3, nome: 'Dobervaldo Pereira', matricula:'202208101', turma: '2'}
-    ];
+    this.carregarAlunos();
+  }
+
+  carregarAlunos() {
+    this.alunoService.listarAlunos().subscribe((res) => {
+      console.log(res);
+      res.forEach((aluno) => {
+        this.listaDeAlunos.push(aluno);
+      });
+    });
   }
 
 }

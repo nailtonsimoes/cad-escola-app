@@ -2,14 +2,17 @@ package com.webapp.cadescola.services;
 
 import com.webapp.cadescola.domain.Aluno;
 import com.webapp.cadescola.domain.Turma;
-import com.webapp.cadescola.dtos.AlunoDto;
+import com.webapp.cadescola.dtos.AlunoRequestDto;
+import com.webapp.cadescola.dtos.AlunoResponseDto;
 import com.webapp.cadescola.repositories.AlunoRepository;
 import com.webapp.cadescola.repositories.TurmaRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class AlunoService {
@@ -18,9 +21,12 @@ public class AlunoService {
     AlunoRepository alunoRepository;
 
     @Autowired
+    private ModelMapper mapper;
+
+    @Autowired
     private TurmaRepository turmaRepository;
 
-    public Aluno salvarAluno(Long turmaId, AlunoDto alunoDto) {
+    public Aluno salvarAluno(Long turmaId, AlunoRequestDto requestDto) {
         Turma turmaLocal = turmaRepository.findById(turmaId).
                 orElseThrow(
                         () -> new RuntimeException(
@@ -28,15 +34,18 @@ public class AlunoService {
                         ));
         Aluno alunoModelo = new Aluno();
 
-        alunoModelo.setNome(alunoDto.getNome());
-        alunoModelo.setMatricula(alunoDto.getMatricula());
+        alunoModelo.setNome(requestDto.getNome());
+        alunoModelo.setMatricula(requestDto.getMatricula());
         alunoModelo.setTurma(turmaLocal);
 
         return alunoRepository.save(alunoModelo);
     }
 
-    public List<Aluno> listarAlunos() {
-        return alunoRepository.findAll();
+    public List<AlunoResponseDto> listarAlunos() {
+        List<Aluno> alunosDb = alunoRepository.findAll();
+        return alunosDb.stream()
+                .map(aluno -> mapper.map(aluno, AlunoResponseDto.class))
+                .collect(Collectors.toList());
     }
 
     public Optional<Aluno> buscarAlunoPorId(Long id) {
