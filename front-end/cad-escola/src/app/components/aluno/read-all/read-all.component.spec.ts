@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TurmaComponent } from './turma.component';
+import { ReadAllComponent } from './read-all.component';
 
-describe('TurmaComponent', () => {
-  let component: TurmaComponent;
-  let fixture: ComponentFixture<TurmaComponent>;
+describe('ReadAllComponent', () => {
+  let component: ReadAllComponent;
+  let fixture: ComponentFixture<ReadAllComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [TurmaComponent]
+      declarations: [ReadAllComponent]
     });
-    fixture = TestBed.createComponent(TurmaComponent);
+    fixture = TestBed.createComponent(ReadAllComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
