@@ -1,6 +1,7 @@
 package com.webapp.cadescola.controllers;
 
 import com.webapp.cadescola.domain.Aluno;
+import com.webapp.cadescola.dtos.AlunoDto;
 import com.webapp.cadescola.services.AlunoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,9 +17,9 @@ public class AlunoController {
     @Autowired
     private AlunoService alunoService;
 
-    @PostMapping("/criar")
+    @PostMapping("/{turmaId}/criar")
     @ResponseStatus(HttpStatus.CREATED)
-    public Aluno criarAluno(@PathVariable Long turmaId, @RequestBody Aluno aluno) {
+    public Aluno criarAluno(@PathVariable Long turmaId, @RequestBody AlunoDto aluno) {
         return alunoService.salvarAluno(turmaId, aluno);
     }
 

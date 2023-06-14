@@ -2,6 +2,7 @@ package com.webapp.cadescola.services;
 
 import com.webapp.cadescola.domain.Aluno;
 import com.webapp.cadescola.domain.Turma;
+import com.webapp.cadescola.dtos.AlunoDto;
 import com.webapp.cadescola.repositories.AlunoRepository;
 import com.webapp.cadescola.repositories.TurmaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,14 +20,19 @@ public class AlunoService {
     @Autowired
     private TurmaRepository turmaRepository;
 
-    public Aluno salvarAluno(Long turmaId, Aluno aluno) {
+    public Aluno salvarAluno(Long turmaId, AlunoDto alunoDto) {
         Turma turmaLocal = turmaRepository.findById(turmaId).
                 orElseThrow(
                         () -> new RuntimeException(
                                 "Turma não encontradA!"
                         ));
-        aluno.setTurma(turmaLocal);
-        return alunoRepository.save(aluno);
+        Aluno alunoModelo = new Aluno();
+
+        alunoModelo.setNome(alunoDto.getNome());
+        alunoModelo.setMatricula(alunoDto.getMatricula());
+        alunoModelo.setTurma(turmaLocal);
+
+        return alunoRepository.save(alunoModelo);
     }
 
     public List<Aluno> listarAlunos() {

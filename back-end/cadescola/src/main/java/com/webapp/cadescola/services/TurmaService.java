@@ -1,16 +1,21 @@
 package com.webapp.cadescola.services;
 
 import com.webapp.cadescola.domain.Turma;
+import com.webapp.cadescola.dtos.TurmaDto;
 import com.webapp.cadescola.repositories.TurmaRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class TurmaService {
 
+    @Autowired
+    private ModelMapper mapper;
     @Autowired
     private TurmaRepository turmaRepository;
 
