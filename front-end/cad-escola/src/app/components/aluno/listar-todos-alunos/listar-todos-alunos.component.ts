@@ -14,9 +14,9 @@ export class ListarTodosAlunosComponent {
   ngOnInit(): void {
     // Preencha a fonte de dados com os dados desejados
     this.listaDeAlunos = [
-      { id: 1, nome: 'Chicus Chapelotis', matricula:'202306547', turma: 'Turma 3º Ano B' },
-      { id: 1, nome: 'Maria Garibalda', matricula:'202105542', turma: 'Turma 1º Ano A' },
-      { id: 1, nome: 'Dobervaldo Pereira', matricula:'202208101', turma: 'Turma 2º Ano C'}
+      { id: 1, nome: 'Chicus Chapelotis', matricula:'202306547', turma: '1' },
+      { id: 2, nome: 'Maria Garibalda', matricula:'202105542', turma: '2' },
+      { id: 3, nome: 'Dobervaldo Pereira', matricula:'202208101', turma: '2'}
     ];
   }
 

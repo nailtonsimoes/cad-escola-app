@@ -1,14 +1,25 @@
-<table class="mat-elevation-z8 demo-table">
-  <tr>
-    <th>ID</th>
-    <th>Nome do Aluno</th>
-    <th>Matricula</th>
-    <th>Turma</th>
-  </tr>
-  <tr *ngFor="let aluno of listaDeAlunos">
-    <td>{{ aluno.id }}</td>
-    <td>{{ aluno.nome }}</td>
-    <td>{{ aluno.matricula }}</td>
-    <td>{{ aluno.turma }}</td>
-  </tr>
-</table>
+<mat-card class="mat-elevation-z8 read-all-card">
+  <mat-card-actions class="btn-create-box">
+    <button mat-raised-button class="add-btn" routerLink="aluno/criar">
+      Cadastrar Aluno
+    </button>
+    <button mat-raised-button class="add-btn" routerLink="turma/criar">
+      Cadastrar Turma
+    </button>
+  </mat-card-actions>
+
+  <table class="mat-elevation-z8 demo-table">
+    <tr>
+      <th>ID</th>
+      <th>Nome do Aluno</th>
+      <th>Matricula</th>
+      <th>Turma</th>
+    </tr>
+    <tr *ngFor="let aluno of listaDeAlunos">
+      <td>{{ aluno.id }}</td>
+      <td>{{ aluno.nome }}</td>
+      <td>{{ aluno.matricula }}</td>
+      <td>{{ aluno.turma }}</td>
+    </tr>
+  </table>
+</mat-card>
