@@ -1,1 +1,14 @@
-<p>listar-todos-alunos works!</p>
+<table class="mat-elevation-z8 demo-table">
+  <tr>
+    <th>ID</th>
+    <th>Nome do Aluno</th>
+    <th>Matricula</th>
+    <th>Turma</th>
+  </tr>
+  <tr *ngFor="let aluno of listaDeAlunos">
+    <td>{{ aluno.id }}</td>
+    <td>{{ aluno.nome }}</td>
+    <td>{{ aluno.matricula }}</td>
+    <td>{{ aluno.turma }}</td>
+  </tr>
+</table>
