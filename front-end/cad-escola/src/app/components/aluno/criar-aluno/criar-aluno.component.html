@@ -1,1 +1,39 @@
-<p>criar-aluno works!</p>
+<form>
+  <h1>Criando Aluno</h1>
+
+  <div class="forms">
+    <mat-form-field class="form">
+      <mat-label>Nome do Aluno</mat-label>
+      <textarea
+        [(ngModel)]="aluno.nome"
+        name="aluno.nome"
+        matInput
+        placeholder="Ex. Josias du Ó"
+      ></textarea>
+    </mat-form-field>
+
+    <mat-form-field class="form">
+      <mat-label>Matricula</mat-label>
+      <textarea
+        [(ngModel)]="aluno.matricula"
+        name="aluno.matricula"
+        matInput
+        placeholder="Ex. 200010104"
+      ></textarea>
+    </mat-form-field>
+
+    <mat-form-field class="form">
+      <mat-label>Selecione a Turma</mat-label>
+      <mat-select [(ngModel)]="turmaId" name="turmaId">
+        <mat-option *ngFor="let turma of turmas" [value]="turma.id">
+          {{ turma.nome }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="buttons">
+    <button mat-raised-button color="" (click)="create()">Criar</button>
+    <button mat-raised-button routerLink="" color="warn">Cancelar</button>
+  </div>
+</form>
