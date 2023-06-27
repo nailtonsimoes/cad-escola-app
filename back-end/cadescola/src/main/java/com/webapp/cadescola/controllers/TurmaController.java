@@ -1,7 +1,6 @@
 package com.webapp.cadescola.controllers;
 
 import com.webapp.cadescola.domain.Turma;
-import com.webapp.cadescola.dtos.TurmaDto;
 import com.webapp.cadescola.services.TurmaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
