@@ -16,6 +16,7 @@ export class ListarTodosAlunosComponent {
   constructor(private turmaService: TurmaService, private alunoService: AlunoService) {}
 
   ngOnInit(): void {
+    this.carregarTurmas();
     this.carregarAlunos();
   }
 
@@ -26,6 +27,19 @@ export class ListarTodosAlunosComponent {
         this.listaDeAlunos.push(aluno);
       });
     });
+  }
+
+  carregarTurmas() {
+    this.turmaService.listarTurmas().subscribe((res) => {
+      res.forEach((turma) => {
+        this.turmas.push(turma);
+      });
+    });
+  }
+
+  obterNomeTurma(idTurma: number): string {
+    const turmaEncontrada = this.turmas.find((turma) => turma.id === idTurma);
+    return turmaEncontrada ? turmaEncontrada.nome : '';
   }
 
 }
